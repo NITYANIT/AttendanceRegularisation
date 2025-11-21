@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+.container {
+  padding: 24px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  font-family: "Rubik", sans-serif;
+}
+
+.heading {
+  font-size: 4px;
+  font-weight: 100;
+  margin-bottom: 20px;
+  padding: 0;
+}
+.submit-btn{
+  font-weight:100;
+}
+
+ .badge {
+  background-color: #dd3e2d;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  margin-left: 6px;
+} 
+
+.drdo-header-center {
+  font-weight:500;
+  font-size: 26.5px;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.search-wrapper {
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.search {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #dbd4d1;
+  border-radius: 6px;
+}
+
+.table-wrapper {
+  /* overflow-x: auto; */
+  border: 1px solid  #c3c7ce;
+  border-radius: 8px;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table thead {
+  background-color: #f9fafb;
+  color: #6b7280;
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid  #c3c7ce;
+}
+
+.empty-row {
+  text-align: center;
+  color: #9ca3af;
+  padding: 24px;
+}
+
+.req-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+ .req-button {
+  background-color: #123499;
+  color: #ffffff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+ .req-button:hover {
+  background-color: hsla(142, 61%, 44%, 0.993);
+    transform: scale(1.05); 
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}  
+.request-button {
+  background-color: #123499;
+  color: #ffffff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+ .request-button:hover {
+  background-color: hsla(142, 61%, 44%, 0.993);
+    transform: scale(1.05); 
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+} 
+.fab-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #993b12; 
+  color: white;
+  font-size: 28px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.fab-button:hover {
+  background-color:hsla(142, 61%, 44%, 0.993);
+  transform: scale(1.1);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+}
+.tab-content {
+  width: 100%;
+}
+
+.tab-panel {
+  display: block;
+  width: 100%;
+}
+
+.filters {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* optional for responsiveness */
+}
+
+.filter-dropdown {
+  flex: 1;
+  padding: 7px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 150px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 4px;
+}
+
+.ea-tab-button {
+   /* Equal width */
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  font-weight: 400;
+}
+
+.ea-tab-button:hover {
+  background-color: #e0e0e0;
+}
+
+.ea-tab-button.active {
+  background-color: #123499;
+  color:white;
+  border-bottom: 2px solid white; /* creates the illusion of active tab */
+  font-weight: 400;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+.edit{
+  background-color: hsla(142, 61%, 44%, 0.993);
+  color:white;
+  margin-right: 4px;
+  border-radius: 6px;
+  font-size: 13px;
+   border: 1px solid #ccc;
+   padding:4px 4px;
+}
+
+.delete{
+  background-color: #e44242;
+  color:white;
+  margin-right: 4px;
+  border-radius: 6px ;
+  font-size: 13px;
+   border: 1px solid #ccc;
+   padding:4px 4px;
+ 
+}
+.delete:hover {
+
+    transform: scale(1.05); 
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+} 
+.edit:hover {
+
+    transform: scale(1.05); 
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+} 
+
+
+.filter-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.filter-icon {
+  color: #666;
+  margin-right: 2px;
+}
+
+.filter-cell {
+  width: 100%;
+  padding: 4px;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.status-approved {
+  color: green;
+  font-weight: 600;
+}
+
+.status-rejected,
+.status-pending {
+  color: #123499;
+  font-weight: 600;
+}
+.filter-input {
+  width: 100%;
+  padding: 6px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+

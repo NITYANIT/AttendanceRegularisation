@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color:white; 
+  font-family: "Rubik", sans-serif;
+}
+
+.drdo-header {
+  position: fixed;         
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: #123499;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 47px 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  z-index: 1000;
+}
+
+
+/* .drdo-sidebar-socials-fixed {
+  position: fixed;
+  top: 250px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 41px;
+  z-index: 1000;
+}
+
+.drdo-sidebar-socials-fixed img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.drdo-sidebar-socials-fixed img:hover {
+  transform: scale(1.15);
+}
+ */
+
+
+.drdo-outer-wrapper {
+  font-family: "Rubik", sans-serif;
+  background-color: white;
+  min-height: auto;
+}
+.drdo-header-logo {
+    width:80px;
+  height: auto;
+  margin-right: 0px;
+  border-radius: 15px;
+}
+
+.drdo-header-left {
+  display: flex;
+  align-items: center;
+  font-size: 29px;
+  color: white;
+   gap: 12px;
+}
+
+.drdo-header-center {
+  font-weight:500;
+  font-size: 26.5px;
+  color: black;
+  padding-bottom: 20px;
+}
+.drdo-header-login {
+  display: flex;
+  align-items: center;
+}
+.drdo-header-login h3 {
+   position: absolute; 
+  left: 50%; 
+transform: translateX(-50%);
+  
+}
+
+.drdo-login-btn {
+  background-color:#123499;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  
+}
+
+.drdo-login-btn:hover {
+  background-color: #f0f0f0;
+  color:#123499;
+  transition: background-color 0.3s ease; 
+}
+
+
+
+.drdo-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 100px 20px 40px; 
+  background-color: white;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+
+
+.drdo-left img {
+  width: 430px;
+  height: auto;
+   transition: all 0.3s ease;
+}
+
+
+
+.drdo-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.drdo-title {
+  font-size: 20px;
+  font-weight:400;
+  margin-bottom: 10px;
+}
+
+.drdo-subtitle {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.drdo-btn1 {
+  background-color: #123499;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  width:360px;
+  margin: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+.drdo-btn2 {
+  background-color: white;
+  color: #123499;
+  border: none;
+  padding: 12px 30px;
+  width:360px;
+  margin: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.drdo-btn1:hover {
+   background-color: #1877f2;
+}
+.drdo-btn2:hover {
+   background-color: #f5f6f9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------- MODAL STYLES -------- */
+.drdo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+   padding: 60px 20px;
+  z-index: 9999;
+}
+
+.drdo-modal {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.25s ease-in-out;
+   max-height: 95vh; 
+  overflow-y: auto;
+} 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.drdo-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 22px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #333;
+}
+
+.drdo-modal-logo {
+  width: 60px;
+ 
+}
+
+.drdo-modal h2 {
+  font-size: 22px;
+  margin: 8px 8px;
+  padding: 0px;
+}
+
+.drdo-modal p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.drdo-google-btn {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 16px;
+  width: 100%;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.drdo-google-btn img {
+  width: 18px;
+}
+
+.drdo-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 13px;
+  margin: 16px 0;
+  position: relative;
+}
+
+.drdo-divider::before,
+.drdo-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #ccc;
+  margin: 0 10px;
+}
+
+.drdo-modal input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.drdo-toggle {
+  text-align: right;
+  font-size: 13px;
+  color: #123499;
+  cursor: pointer;
+}
+.drdo-toggle:hover{
+  text-decoration: underline;
+}
+
+.continue-btn {
+  background: #123499;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 12px;
+  font-weight: bold;
+  width: 100%;
+  cursor: pointer;
+}
+
+.drdo-footer {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 18px;
+  color: #333;
+  padding-bottom: 30px;
+}
+.drdo-footer:hover{
+  text-decoration: underline;
+}
+
+
+.drdo-footer span {
+  color: #123499;
+  cursor: pointer;
+  font-weight: 600;
+}
+.input-label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+.drdo-two-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.drdo-two-inputs > div {
+  flex: 1;
+}
+
+
+.drdo-password-field {
+  position: relative;
+}
+
+.drdo-password-field input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.eye-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 7px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 35px; 
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-row .form-group {
+  flex: 2;
+}
+.form-group input:focus {
+  border-color: #123499;
+  box-shadow: 0 0 0 1px #123499;
+}
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  background-color: white;
+  appearance: none;
+}
+
+.form-group select:focus {
+  border-color: #123499;
+  box-shadow: 0 0 0 1px #123499;
+}
+
+
