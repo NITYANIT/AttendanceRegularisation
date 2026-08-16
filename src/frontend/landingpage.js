@@ -227,12 +227,10 @@ const DRDOLanding = () => {
 
     if (!modal) return;
 
-    // Get only visible inputs/selects
+    // Get only visible input/select fields
     const fields = Array.from(
       modal.querySelectorAll("input, select")
-    ).filter((field) => {
-      return field.offsetParent !== null;
-    });
+    ).filter((field) => field.offsetParent !== null);
 
     // Check every visible field
     for (const field of fields) {
@@ -254,9 +252,11 @@ const DRDOLanding = () => {
     // Redirect according to role
     if (role === "division-pa") {
       navigate("/division-pa");
-    } else if (role === "head") {
+    } 
+    else if (role === "head") {
       navigate("/division-head");
-    } else if (role === "admin") {
+    } 
+    else if (role === "admin") {
       navigate("/admin");
     }
   };
@@ -264,6 +264,7 @@ const DRDOLanding = () => {
   return (
     <div className="drdo-outer-wrapper">
 
+      {/* HEADER */}
       <header className="drdo-header">
 
         <div className="drdo-header-left">
@@ -292,6 +293,7 @@ const DRDOLanding = () => {
       </header>
 
 
+      {/* LANDING PAGE */}
       <div className="drdo-container">
 
         <div className="drdo-card drdo-left">
@@ -335,13 +337,13 @@ const DRDOLanding = () => {
 
 
       {/* LOGIN / SIGNUP MODAL */}
-
       {showModal && (
 
         <div className="drdo-modal-overlay">
 
           <div className="drdo-modal">
 
+            {/* CLOSE */}
             <button
               className="drdo-modal-close"
               onClick={closeModal}
@@ -350,6 +352,7 @@ const DRDOLanding = () => {
             </button>
 
 
+            {/* LOGO */}
             <img
               src={drdoLogo}
               className="drdo-modal-logo"
@@ -357,6 +360,7 @@ const DRDOLanding = () => {
             />
 
 
+            {/* TITLE */}
             <h2>
               {isSignUp
                 ? 'Create your account'
@@ -372,7 +376,6 @@ const DRDOLanding = () => {
 
 
             {/* GOOGLE BUTTON - UNCHANGED */}
-
             <button className="drdo-google-btn">
 
               <img
@@ -390,12 +393,12 @@ const DRDOLanding = () => {
             </div>
 
 
-            {/* SIGNUP */}
-
+            {/* ================= SIGN UP ================= */}
             {isSignUp ? (
 
               <>
 
+                {/* NAME */}
                 <div className="form-row">
 
                   <div className="form-group">
@@ -415,6 +418,7 @@ const DRDOLanding = () => {
                 </div>
 
 
+                {/* USERNAME */}
                 <div className="form-group">
 
                   <label htmlFor="username">
@@ -430,6 +434,7 @@ const DRDOLanding = () => {
                 </div>
 
 
+                {/* ROLE */}
                 <div className="form-group">
 
                   <label htmlFor="role">
@@ -466,6 +471,7 @@ const DRDOLanding = () => {
                 </div>
 
 
+                {/* PHONE */}
                 <div className="form-group">
 
                   <label htmlFor="phone">
@@ -481,6 +487,7 @@ const DRDOLanding = () => {
                 </div>
 
 
+                {/* EMAIL */}
                 <div className="form-group">
 
                   <label htmlFor="email">
@@ -496,6 +503,7 @@ const DRDOLanding = () => {
                 </div>
 
 
+                {/* PASSWORD */}
                 <div className="form-group">
 
                   <label htmlFor="password">
@@ -529,9 +537,10 @@ const DRDOLanding = () => {
 
               </>
 
+
             ) : usePhone ? (
 
-              /* PHONE LOGIN */
+              /* ================= PHONE LOGIN ================= */
 
               <>
 
@@ -549,6 +558,7 @@ const DRDOLanding = () => {
                 </div>
 
 
+                {/* ROLE */}
                 <div className="form-group">
 
                   <label htmlFor="role">
@@ -593,9 +603,10 @@ const DRDOLanding = () => {
 
               </>
 
+
             ) : (
 
-              /* EMAIL / USERNAME LOGIN */
+              /* ================= EMAIL / USERNAME LOGIN ================= */
 
               <>
 
@@ -621,6 +632,7 @@ const DRDOLanding = () => {
                 </div>
 
 
+                {/* ROLE */}
                 <div className="form-group">
 
                   <label htmlFor="role">
@@ -660,8 +672,7 @@ const DRDOLanding = () => {
             )}
 
 
-            {/* CONTINUE */}
-
+            {/* CONTINUE BUTTON */}
             <button
               className="continue-btn"
               onClick={handleContinue}
@@ -671,7 +682,6 @@ const DRDOLanding = () => {
 
 
             {/* FOOTER */}
-
             <div className="drdo-footer">
 
               {isSignUp ? (
@@ -709,6 +719,7 @@ const DRDOLanding = () => {
 };
 
 export default DRDOLanding;
+
 
 
 
