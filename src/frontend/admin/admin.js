@@ -562,7 +562,6 @@
 
 
 
-
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar2.js";
 import { Filter, CheckSquare, ListFilter } from "lucide-react";
@@ -570,14 +569,12 @@ import "./admincss.css";
 
 const AdminPage = () => {
   const [filterName, setFilterName] = useState("");
-  const [filterDivision, setFilterDivision] = useState("");
   const [filterHead, setFilterHead] = useState("");
   const [filterType, setFilterType] = useState("");
   const [filterDate, setFilterDate] = useState("");
-  // const [requests, setRequests] = useState([]);
   const [approved, setApproved] = useState([]);
   const [employees, setEmployees] = useState([]);
-   const [attendance, setAttendance] = useState([]);
+  const [attendance] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [sortBy, setSortBy] = useState("");
 
@@ -588,58 +585,45 @@ const AdminPage = () => {
       .catch((err) => console.error("Failed to fetch employees:", err));
   }, []);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:8081/api/attendance")
-  //     .then((res) => res.json())
-  //     .then((data) => setAttendance(data))
-  //     .catch((err) => console.error("Attendance fetch error:", err));
-  // }, []);
-
   useEffect(() => {
-  fetch("http://localhost:8081/api/regularisation/in-progress")
-    .then((res) => res.json())
-    .then((data) => setApproved(data))  // these are the "in progress" requests
-    .catch((err) => console.error("Failed to fetch in-progress requests:", err));
-}, []);
+    fetch("http://localhost:8081/api/regularisation/in-progress")
+      .then((res) => res.json())
+      .then((data) => setApproved(data))
+      .catch((err) =>
+        console.error("Failed to fetch in-progress requests:", err)
+      );
+  }, []);
 
-
-  // const enrichedRequests = approved.map((req) => {
-  //   const emp = employees.find((e) => e.ceid === req.ceid);
-  //   const match = attendance.find((a) => a.ceid === req.ceid && a.date === req.date);
-  //   return {
-  //     ...req,
-  //     divheadname: emp?.divheadname || "Unknown Head",
-  //     rawin: match?.rawin || "NA",
-  //     rawout: match?.rawout || "NA",
-  //   };
-  // });
   const enrichedRequests = approved.map((req) => {
-  const emp = employees.find((e) => e.ceid === req.ceid);
-  const match = attendance.find((a) => a.ceid === req.ceid && a.date === req.date);
+    const emp = employees.find((e) => e.ceid === req.ceid);
+    const match = attendance.find(
+      (a) => a.ceid === req.ceid && a.date === req.date
+    );
 
-  return {
-    ...req,
-    name: emp?.name || "No Name",
-    divpaname: emp?.divpaname || "No Division PA",
-    divheadname: emp?.divheadname || "Unknown Head",
-    rawin: match?.rawin || "NA",
-    rawout: match?.rawout || "NA",
-  };
-});
+    return {
+      ...req,
+      name: emp?.name || "No Name",
+      divpaname: emp?.divpaname || "No Division PA",
+      divheadname: emp?.divheadname || "Unknown Head",
+      rawin: match?.rawin || "NA",
+      rawout: match?.rawout || "NA",
+    };
+  });
 
-
-  const filteredRequests = enrichedRequests.filter((req) =>
-    (req.name || "").toLowerCase().includes(filterName.toLowerCase()) &&
-    (req.divpaname || "").toLowerCase().includes(filterDivision.toLowerCase()) &&
-    (req.divheadname || "").toLowerCase().includes(filterHead.toLowerCase()) &&
-    (req.type || "").toLowerCase().includes(filterType.toLowerCase()) &&
-    (req.date || "").includes(filterDate)
+  const filteredRequests = enrichedRequests.filter(
+    (req) =>
+      (req.name || "").toLowerCase().includes(filterName.toLowerCase()) &&
+      (req.divheadname || "").toLowerCase().includes(filterHead.toLowerCase()) &&
+      (req.type || "").toLowerCase().includes(filterType.toLowerCase()) &&
+      (req.date || "").includes(filterDate)
   );
 
   const sortedRequests = [...filteredRequests].sort((a, b) => {
     if (!sortBy) return 0;
+
     const valA = a[sortBy]?.toLowerCase?.() || "";
     const valB = b[sortBy]?.toLowerCase?.() || "";
+
     return valA.localeCompare(valB);
   });
 
@@ -647,113 +631,104 @@ const AdminPage = () => {
     const updated = [...approved];
     updated[index].status = newStatus;
     setApproved(updated);
-   
   };
 
- 
   const bulkUpdate = (status) => {
-  const filteredKeys = new Set(filteredRequests.map(req => `${req.ceid}_${req.date}`));
-  const updated = approved.map(req =>
-    filteredKeys.has(`${req.ceid}_${req.date}`) ? { ...req, status } : req
-  );
-  setApproved(updated);
-  
-};
+    const filteredKeys = new Set(
+      filteredRequests.map((req) => `${req.ceid}_${req.date}`)
+    );
 
+    const updated = approved.map((req) =>
+      filteredKeys.has(`${req.ceid}_${req.date}`)
+        ? { ...req, status }
+        : req
+    );
 
-// const handleAccept = async () => {
-//   const toUpdate = approved.filter(req => req.status === "Approved ✅" || req.status === "Rejected ❌");
-//   const approvedItems = approved.filter(item => item.status === "Approved ✅");
+    setApproved(updated);
+  };
 
-//   const confirm = window.confirm("Do you really want to submit?");
-//   if (!confirm) return;
+  const handleAccept = async () => {
+    const toUpdate = approved.filter(
+      (req) =>
+        req.status === "Approved ✅" || req.status === "Rejected ❌"
+    );
 
-//   try {
-//     // Step 1: Update statuses (Approved + Rejected)
-//     const statusResponse = await fetch("http://localhost:8081/api/regularisation/bulk-update", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(toUpdate),
-//     });
+    const confirm = window.confirm("Do you really want to submit?");
+    if (!confirm) return;
 
-//     if (!statusResponse.ok) {
-//       alert("❌ Failed to update statuses");
-//       return;
-//     }
+    try {
+      const res = await fetch(
+        "http://localhost:8081/api/regularisation/bulk-update",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(toUpdate),
+        }
+      );
 
-//     // Step 2: Send only approved to /approved/only
-//     const approvedResponse = await fetch("http://localhost:8081/approved/only", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(approvedItems),
-//     });
+      if (!res.ok) {
+        alert("❌ Failed to update statuses");
+        return;
+      }
 
-//     if (!approvedResponse.ok) {
-//       throw new Error("❌ Failed to save approved entries");
-//     }
+      alert("✅ Statuses updated successfully!");
 
-//     alert("✅ Statuses updated and approved requests saved!");
-//     console.log("Approved entries sent successfully.");
-    
-//   } catch (err) {
-//     console.error("⚠️ Error during backend update:", err);
-//     alert("⚠️ Something went wrong during the submission.");
-//   }
-// };
+      const refreshed = await fetch(
+        "http://localhost:8081/api/regularisation/in-progress"
+      ).then((r) => r.json());
 
-const handleAccept = async () => {
-  const toUpdate = approved.filter(
-    (req) => req.status === "Approved ✅" || req.status === "Rejected ❌"
-  );
-
-  const confirm = window.confirm("Do you really want to submit?");
-  if (!confirm) return;
-
-  try {
-    const res = await fetch("http://localhost:8081/api/regularisation/bulk-update", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(toUpdate),
-    });
-
-    if (!res.ok) {
-      alert("❌ Failed to update statuses");
-      return;
+      setApproved(refreshed);
+    } catch (err) {
+      console.error("⚠️ Error during backend update:", err);
+      alert("⚠️ Something went wrong during the submission.");
     }
-
-    alert("✅ Statuses updated successfully!");
-
-    // Refetch updated data
-    const refreshed = await fetch("http://localhost:8081/api/regularisation/in-progress")
-      .then((r) => r.json());
-    setApproved(refreshed);
-
-  } catch (err) {
-    console.error("⚠️ Error during backend update:", err);
-    alert("⚠️ Something went wrong during the submission.");
-  }
-};
-
-
+  };
 
   const columns = [
-    { label: "Name", value: filterName, onChange: setFilterName },
-    // { label: "Division PA", value: filterDivision, onChange: setFilterDivision },
-    { label: "Division Head", value: filterHead, onChange: setFilterHead },
-    { label: "Type", value: filterType, onChange: setFilterType },
-    { label: "Time", value: filterType },
-    { label: "Date", value: filterDate, onChange: setFilterDate },
-    { label: "Reason", value: filterDate },
+    {
+      label: "Name",
+      value: filterName,
+      onChange: setFilterName,
+    },
+    {
+      label: "Division Head",
+      value: filterHead,
+      onChange: setFilterHead,
+    },
+    {
+      label: "Type",
+      value: filterType,
+      onChange: setFilterType,
+    },
+    {
+      label: "Time",
+      value: "",
+      onChange: () => {},
+    },
+    {
+      label: "Date",
+      value: filterDate,
+      onChange: setFilterDate,
+    },
+    {
+      label: "Reason",
+      value: "",
+      onChange: () => {},
+    },
   ];
 
   return (
-    <div className="container" style={{ paddingTop: "150px",  paddingLeft:"80px"}}>
+    <div
+      className="container"
+      style={{ paddingTop: "150px", paddingLeft: "80px" }}
+    >
       <Navbar />
 
       {!isSidebarOpen && (
-        <div className="hamburger" onClick={() => setIsSidebarOpen(true)}>
+        <div
+          className="hamburger"
+          onClick={() => setIsSidebarOpen(true)}
+        >
           <div className="line"></div>
           <div className="line"></div>
           <div className="line"></div>
@@ -761,16 +736,27 @@ const handleAccept = async () => {
       )}
 
       <div
-        className={`sidebar-overlay ${isSidebarOpen ? "active" : ""}`}
+        className={`sidebar-overlay ${
+          isSidebarOpen ? "active" : ""
+        }`}
         onClick={() => setIsSidebarOpen(false)}
       ></div>
 
       <div className={`sidebar-left ${isSidebarOpen ? "open" : ""}`}>
         <h3 style={{ paddingLeft: "10px" }}>Sidebar Menu</h3>
-        <div className="sidebar-option" title="Sort by" style={{ marginTop: '40px' }}>
+
+        <div
+          className="sidebar-option"
+          title="Sort by"
+          style={{ marginTop: "40px" }}
+        >
           <ListFilter size={20} style={{ marginBottom: "6px" }} />
           <span>Sort By</span>
-          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
             <option value="">None</option>
             <option value="name">Name</option>
             <option value="date">Date</option>
@@ -780,13 +766,19 @@ const handleAccept = async () => {
 
         <div className="sidebar-option" title="Bulk Actions">
           <CheckSquare size={20} style={{ marginBottom: "6px" }} />
+
           <span>Bulk Selection</span>
-          <button onClick={() => bulkUpdate("Approved ✅")}>Approve</button>
-          <button onClick={() => bulkUpdate("Rejected ❌")}>Reject</button>
+
+          <button onClick={() => bulkUpdate("Approved ✅")}>
+            Approve
+          </button>
+
+          <button onClick={() => bulkUpdate("Rejected ❌")}>
+            Reject
+          </button>
         </div>
       </div>
 
-      
       <div className="drdo-header-center">Requests</div>
 
       {approved.length === 0 ? (
@@ -799,25 +791,34 @@ const handleAccept = async () => {
                 {columns.map((col, i) => (
                   <th key={i}>
                     {col.label}
+
                     <div className="filter-icon-wrapper">
                       <Filter size={14} />
+
                       <input
                         className="filter-cell"
                         value={col.value}
-                        onChange={(e) => col.onChange(e.target.value)}
+                        onChange={(e) =>
+                          col.onChange(e.target.value)
+                        }
                         placeholder="Filter"
                       />
                     </div>
                   </th>
                 ))}
+
                 <th>Actions</th>
                 <th>Status</th>
               </tr>
             </thead>
+
             <tbody>
               {sortedRequests.length === 0 ? (
                 <tr>
-                  <td colSpan={columns.length + 2} style={{ textAlign: "center" }}>
+                  <td
+                    colSpan={columns.length + 2}
+                    style={{ textAlign: "center" }}
+                  >
                     No matching requests
                   </td>
                 </tr>
@@ -825,38 +826,67 @@ const handleAccept = async () => {
                 sortedRequests.map((req, index) => (
                   <tr key={index}>
                     <td>{req.name || "No Name"}</td>
-                    {/* <td>{req.divpaname || "No Division PA"}</td> */}
-                    <td>{req.divheadname || "Unknown Head"}</td>
+
+                    <td>
+                      {req.divheadname || "Unknown Head"}
+                    </td>
+
                     <td>{req.type || "No Type"}</td>
+
                     <td>{req.time || "--"}</td>
+
                     <td>{req.date || "No Date"}</td>
+
                     <td>{req.reason || "No Reason"}</td>
+
                     <td>
                       <div className="action-buttons">
                         <button
                           className="approve-btn"
-                          onClick={() => handleStatusUpdate(index, "Approved ✅")}
+                          onClick={() =>
+                            handleStatusUpdate(
+                              index,
+                              "Approved ✅"
+                            )
+                          }
                         >
                           Approve
                         </button>
+
                         <button
                           className="reject-btn"
-                          onClick={() => handleStatusUpdate(index, "Rejected ❌")}
+                          onClick={() =>
+                            handleStatusUpdate(
+                              index,
+                              "Rejected ❌"
+                            )
+                          }
                           style={{ marginLeft: "8px" }}
                         >
                           Reject
                         </button>
                       </div>
                     </td>
-                    <td>{req.status || "Pending ⏳"}</td>
+
+                    <td>
+                      {req.status || "Pending ⏳"}
+                    </td>
                   </tr>
                 ))
               )}
             </tbody>
           </table>
 
-          <div style={{ marginTop: "20px", textAlign: "center" }}>
-            <button onClick={(handleAccept)} className="submit-btn">
+          <div
+            style={{
+              marginTop: "20px",
+              textAlign: "center",
+            }}
+          >
+            <button
+              onClick={handleAccept}
+              className="submit-btn"
+            >
               Accept
             </button>
           </div>
