@@ -187,11 +187,14 @@
 
 
 
+
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './GovtLoginPage.css';
-import drdoLogo from './logo.png';
-import googleLogo from './social/google-logo.jpeg';
+// import drdoLogo from './logo.png';
+import drdoLogo from '../DRDO-logo.png';
+import googleLogo from '../social/google-logo.jpeg';
 
 const DRDOLanding = () => {
   const [showModal, setShowModal] = useState(false);
@@ -719,10 +722,6 @@ const DRDOLanding = () => {
 };
 
 export default DRDOLanding;
-
-
-
-
 
 
 
