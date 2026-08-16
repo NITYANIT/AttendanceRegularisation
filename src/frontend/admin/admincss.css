@@ -53,7 +53,7 @@
 
 .action-buttons {
   display: flex; */
-  /* gap: 8px; /* spacing between buttons */
+  /* gap: 8px; spacing between buttons */
   /* justify-content: center; /* optional, to center buttons */
   /* align-items: center;
 } */ 
@@ -317,17 +317,6 @@ button.reject:hover {
   /* padding-left: 40px; */
 }
 
-
-
-
-/* .table-wrapper {
-  overflow-x: auto;
-  /* margin: 20px; */
-  /* border-radius: 8px;
-  border: 1px solid #c3c7ce;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  padding-left: 40px;
-} */ */
 
 .table {
   width: 100%;
