@@ -67,4 +67,46 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)                                                                                                                                             
+
+
+ATTENDANCEREGULA...
+│
+├── public/
+│
+├── src/
+│   │
+│   ├── backend/
+│   │
+│   ├── frontend/
+│   │   ├── admin/
+│   │   │   ├── admin.js
+│   │   │   ├── admincss.css
+│   │   │   ├── Navbar2.css
+│   │   │   └── Navbar2.js
+│   │   │
+│   │   ├── divisionhead/
+│   │   │   ├── divisionhead.js
+│   │   │   ├── divisionhead.css
+│   │   │   ├── Navbar1.css
+│   │   │   └── Navbar1.js
+│   │   │
+│   │   ├── divisionpa/
+│   │   │   ├── divisionpa.js
+│   │   │   ├── divisionpa.css
+│   │   │   ├── Navbar.css
+│   │   │   ├── Navbar.js
+│   │   │   └── Navbar.html
+│   │   │
+│   │   ├── App.js
+│   │   ├── GovtLoginPage.css
+│   │   ├── landingpage.js
+│   │   ├── logo.png
+│   │   ├── DRDO-logo.png
+│   │   ├── index.js
+│   │   └── logo&w.png
+│   │
+│   ├── .gitignore
+│   ├── MySQL.session.sql
+│   ├── package.json
+│   └── package-lock.json
